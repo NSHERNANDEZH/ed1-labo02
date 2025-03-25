@@ -52,7 +52,7 @@ class E03AVLTreeTest {
             List<AVLOperations> operations = new LinkedList<>();
 
             for (String line : lines) {
-                if (line.isEmpty()) {
+                if (line.isBlank()) {
                     builder.add(operations);
                     operations = new LinkedList<>();
                     continue;
@@ -61,11 +61,13 @@ class E03AVLTreeTest {
                 String[] commands = line.split(",");
 
                 final Integer arg = Optional.ofNullable(commands[1])
+                        .map(String::trim)
                         .filter(command -> !"null".equalsIgnoreCase(command))
                         .map(Integer::parseInt)
                         .orElse(null);
 
                 final Integer expected = Optional.ofNullable(commands[2])
+                        .map(String::trim)
                         .filter(command -> !"null".equalsIgnoreCase(command))
                         .map(Integer::parseInt)
                         .orElse(null);
